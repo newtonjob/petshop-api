@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('order_status_id')->constrained();
             $table->foreignId('payment_id')->nullable()->constrained();
-            $table->string('address')->nullable();
             $table->json('address')->nullable();
             $table->float('delivery_fee')->nullable();
             $table->float('amount', 12);
