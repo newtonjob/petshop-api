@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('password');
             $table->char('avatar', 36)->nullable();
             $table->string('address')->nullable();
-            $table->string('phone_number')->nullable();
+            $table->string('phone_number')->nullable()->unique();
             $table->boolean('is_marketing')->default(false);
             $table->timestamp('last_login_at')->nullable();
             $table->timestamps();
