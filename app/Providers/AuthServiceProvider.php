@@ -25,7 +25,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Auth::viaRequest('api', fn (Request $request) => rescue(function () use ($request) {
+        Auth::viaRequest('jwt', fn (Request $request) => rescue(function () use ($request) {
             $uid = Jwt::uid($token = $request->bearerToken());
 
             if (! $jwtToken = JwtToken::findToken($token)) {
