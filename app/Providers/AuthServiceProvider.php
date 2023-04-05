@@ -2,7 +2,8 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 use App\Models\JwtToken;
 use App\Support\Jwt;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -25,6 +26,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Gate::define('admin', fn (User $user) => $user->isAdmin());
+
         Auth::viaRequest('jwt', fn (Request $request) => rescue(function () use ($request) {
             $uid = Jwt::uid($token = $request->bearerToken());
 
