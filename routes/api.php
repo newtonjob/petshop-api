@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\AdminAuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('/admin/login',  [AdminAuthController::class, 'store'])->name('admin.login');
+
+Route::middleware('auth:api')->group(function () {
+    Route::prefix('admin')->name('admin.')->group(function () {
+
+        Route::post('/logout', [AdminAuthController::class, 'destroy'])->name('logout');
+    });
 });
+
+

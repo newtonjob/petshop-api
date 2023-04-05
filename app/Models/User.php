@@ -48,4 +48,12 @@ class User extends Authenticatable
     {
         return Attribute::set(fn ($value) => bcrypt($value));
     }
+
+    /**
+     * Determine if the user is an admin.
+     */
+    public function isAdmin()
+    {
+        return $this->is_admin;
+    }
 }
