@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function registerApiResponseMacro(): void
     {
-        Response::macro('api', function (string $message, array $data = [], $status = 200, array $headers = []) {
+        Response::macro('api', function (string $message, $data = [], $status = 200, array $headers = []) {
             return response()->json(['message' => $message, 'data' => $data], $status, $headers);
         });
     }

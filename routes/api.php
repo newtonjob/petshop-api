@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AdminAuthController;
+use App\Http\Controllers\Api\AdminUserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,7 @@ Route::post('/admin/login',  [AdminAuthController::class, 'store'])->name('admin
 
 Route::middleware('auth:api')->group(function () {
     Route::prefix('admin')->name('admin.')->group(function () {
+        Route::post('/create', [AdminUserController::class, 'store'])->name('create');
 
         Route::post('/logout', [AdminAuthController::class, 'destroy'])->name('logout');
     });
