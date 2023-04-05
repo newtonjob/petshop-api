@@ -20,7 +20,7 @@ trait HasApiTokens
     /**
      * Create a new personal access token for the user.
      */
-    public function createToken(string $name, array $permissions = ['*'], DateTimeInterface $expiresAt = null): string
+    public function createToken(string $name = 'Personal', array $permissions = ['*'], DateTimeInterface $expiresAt = null): string
     {
         return tap(
             Jwt::encode(array_filter([
