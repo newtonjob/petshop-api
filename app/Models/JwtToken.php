@@ -23,6 +23,13 @@ class JwtToken extends Model
      */
     protected $guarded = [];
 
+    protected static function booted()
+    {
+        self::retrieved(function (JwtToken $jwtToken) {
+            $jwtToken->update(['last_used_at' => now()]);
+        });
+    }
+
     /**
      * Find the token instance matching the given token.
      */
