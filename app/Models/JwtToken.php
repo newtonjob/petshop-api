@@ -8,6 +8,22 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class JwtToken extends Model
 {
     /**
+     * The attributes that should be cast to native types.
+     */
+    protected $casts = [
+        'permissions'  => 'json',
+        'restrictions' => 'json',
+        'last_used_at' => 'datetime',
+        'expires_at'   => 'datetime',
+        'refreshed_at' => 'datetime',
+    ];
+
+    /**
+     * The attributes that aren't mass assignable.
+     */
+    protected $guarded = [];
+
+    /**
      * Find the token instance matching the given token.
      */
     public static function findToken(string $token): ?static

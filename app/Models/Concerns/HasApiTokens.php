@@ -30,8 +30,8 @@ trait HasApiTokens
             ])),
             function ($token) use ($name, $permissions, $expiresAt) {
                 $this->tokens()->create([
-                    'name'        => $name,
-                    'token'       => hash('sha256', $token),
+                    'token_title' => $name,
+                    'unique_id'   => hash('sha256', $token),
                     'permissions' => $permissions,
                     'expires_at'  => $expiresAt,
                 ]);
