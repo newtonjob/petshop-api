@@ -8,6 +8,12 @@ trait HasUuids
 {
     use EloquentHasUuids;
 
+    public function initializeHasUuids()
+    {
+        $this->usesUniqueIds = true;
+        $this->hidden[]      = 'id';
+    }
+
     /**
      * Get the columns that should receive a unique identifier.
      */
