@@ -26,6 +26,7 @@ return new class extends Migration
             $table->boolean('is_marketing')->default(false);
             $table->timestamp('last_login_at')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
