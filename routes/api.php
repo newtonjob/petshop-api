@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\NewPasswordController;
 use App\Http\Controllers\PasswordResetLinkController;
 use App\Http\Controllers\PromotionController;
@@ -31,6 +32,8 @@ Route::post('/user/reset-password',   [NewPasswordController::class, 'store'])->
 
 Route::prefix('main')->group(function () {
     Route::get('/promotions', [PromotionController::class, 'index'])->name('promotions.index');
+
+    Route::apiResource('blog', BlogController::class)->only(['index', 'show']);
 });
 
 Route::middleware('auth:api')->group(function () {
