@@ -9,7 +9,7 @@ class PromotionFactory extends Factory
     public function definition(): array
     {
         return [
-            'title'    => fake()->sentence(),
+            'title'    => fake()->realText(35),
             'content'  => fake()->realText(),
             'metadata' => json_encode([
                 'image'      => fake()->uuid(),
