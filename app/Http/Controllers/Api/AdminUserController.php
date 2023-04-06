@@ -12,7 +12,7 @@ class AdminUserController extends Controller
     public function store(StoreAdminRequest $request)
     {
         return Response::api('Admin created successfully',
-            User::create($request->validated())
+            User::create($request->validated())->append('token')
         );
     }
 }

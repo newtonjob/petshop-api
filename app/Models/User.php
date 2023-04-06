@@ -44,6 +44,11 @@ class User extends Authenticatable
         return Attribute::set(fn ($value) => bcrypt($value));
     }
 
+    public function token(): Attribute
+    {
+        return Attribute::get(fn () => $this->createToken());
+    }
+
     /**
      * Determine if the user is an admin.
      */
