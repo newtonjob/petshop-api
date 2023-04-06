@@ -10,9 +10,7 @@ class BlogController extends Controller
 {
     public function index(Request $request)
     {
-        return Response::api('Blog posts retrieved',
-            Post::paginate($request->limit)
-        );
+        return Post::paginate($request->limit);
     }
 
     public function show(Post $blog)
