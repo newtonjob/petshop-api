@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Concerns\HasApiTokens;
 use App\Models\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -24,7 +25,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        'is_admin',
     ];
 
     /**
@@ -47,5 +48,15 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->is_admin;
+    }
+
+    public function scopeFilter(Builder $builder)
+    {
+        $builder->when(request('sortBy'), function (Builder $builder, $sortBy) {
+            $builder->orderBy($sortBy, request()->boolean('desc') ? 'desc' : 'asc');
+        })->when(request('first_name'))->whereFirstName(request('first_name'))
+            ->when(request('email'))->whereEmail(request('email'))
+            ->when(request('phone'))->wherePhone(request('phone'))
+            ->when(request('is_marketing'))->whereIsMarketing(request()->boolean('is_marketing'));
     }
 }

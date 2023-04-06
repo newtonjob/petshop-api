@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AdminAuthController;
 use App\Http\Controllers\Api\AdminUserController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +21,8 @@ Route::post('/admin/login',  [AdminAuthController::class, 'store'])->name('admin
 Route::middleware('auth:api')->group(function () {
     Route::middleware('can:admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('/create', [AdminUserController::class, 'store'])->name('create');
+
+        Route::apiResource('users', UserController::class)->except(['show', 'store']);
 
         Route::post('/logout', [AdminAuthController::class, 'destroy'])->name('logout');
     });
