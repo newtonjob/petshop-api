@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasUuids;
+use App\Models\Concerns\SortsByRequest;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class Promotion extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory, HasUuids, SortsByRequest;
 
     /**
      * The attributes that should be cast.
@@ -24,9 +25,7 @@ class Promotion extends Model
      */
     public function scopeFilter(Builder $builder)
     {
-        $builder->when(request('sortBy'), function (Builder $builder, $sortBy) {
-            $builder->orderBy($sortBy, request()->boolean('desc') ? 'desc' : 'asc');
-        })->when(request('valid'))->where(function ($builder) {
+        $builder->when(request('valid'))->where(function ($builder) {
             $now        = now()->toDateString();
             $expression = DB::raw("'$now'");
 

@@ -10,7 +10,7 @@ class UserOrderController extends Controller
     public function index(Request $request)
     {
         return Response::api('Orders retrieved',
-            $request->user()->orders()->filter()->paginate($request->limit)
+            $request->user()->orders()->paginate($request->limit)
         );
     }
 }

@@ -15,7 +15,7 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         return Response::api('Categories retrieved',
-            Category::filter()->paginate($request->limit)
+            Category::paginate($request->limit)
         );
     }
 
