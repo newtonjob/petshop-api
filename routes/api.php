@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewPasswordController;
 use App\Http\Controllers\PasswordResetLinkController;
 use App\Http\Controllers\PromotionController;
@@ -36,6 +37,8 @@ Route::prefix('main')->group(function () {
     Route::apiResource('blog', BlogController::class)->only(['index', 'show']);
 });
 
+Route::apiResource('categories', CategoryController::class)->only(['index', 'show']);
+
 Route::middleware('auth:api')->group(function () {
     Route::middleware('can:admin')->prefix('admin')->name('admin.')->group(function () {
         Route::apiResource('users', UserController::class)->except(['show', 'store']);
@@ -43,7 +46,8 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/logout', [AdminAuthController::class, 'destroy'])->name('logout');
     });
 
-    Route::apiSingleton('user', UserProfileController::class)->creatable();
+    Route::apiSingleton('user',      UserProfileController::class)->creatable();
+    Route::apiResource('categories', CategoryController::class)->except(['index', 'show']);
 
     Route::get('/user/orders', [UserOrderController::class, 'index'])->name('user.orders.index');
     Route::post('/logout',     [UserAuthController::class, 'destroy'])->name('user.logout');
