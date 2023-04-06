@@ -14,15 +14,15 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         collect([
-            ['title' => 'Pet clean-up and odor control'],
-            ['title' => 'Cat litter'],
-            ['title' => 'Wet pet food'],
-            ['title' => 'Pet oral care'],
-            ['title' => 'Heartworm medication'],
-            ['title' => 'Pet vitamins and supplements'],
-            ['title' => 'Pet grooming supplies'],
-            ['title' => 'Flea and tick medication'],
-            ['title' => 'Pet treats and chews'],
-        ])->each(fn ($item) => Category::create($item));
+            'Pet clean-up and odor control',
+            'Pet vitamins and supplements',
+            'Flea and tick medication',
+            'Pet grooming supplies',
+            'Pet treats and chews',
+            'Heartworm medication',
+            'Pet oral care',
+            'Wet pet food',
+            'Cat litter',
+        ])->each(fn ($title) => Category::create(compact('title')));
     }
 }
