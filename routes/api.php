@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\NewPasswordController;
 use App\Http\Controllers\PasswordResetLinkController;
+use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserOrderController;
@@ -28,6 +29,10 @@ Route::post('/user/login',            [UserAuthController::class, 'store'])->nam
 Route::post('/user/forgot-password',  [PasswordResetLinkController::class, 'store'])->name('password.forgot');
 Route::post('/user/reset-password',   [NewPasswordController::class, 'store'])->name('password.reset');
 
+Route::prefix('main')->group(function () {
+    Route::get('/promotions', [PromotionController::class, 'index'])->name('promotions.index');
+});
+
 Route::middleware('auth:api')->group(function () {
     Route::middleware('can:admin')->prefix('admin')->name('admin.')->group(function () {
         Route::apiResource('users', UserController::class)->except(['show', 'store']);
@@ -39,8 +44,4 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('/user/orders', [UserOrderController::class, 'index'])->name('user.orders.index');
     Route::post('/logout',     [UserAuthController::class, 'destroy'])->name('user.logout');
-
-    Route::prefix('main')->group(function () {
-
-    });
 });
