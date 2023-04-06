@@ -28,8 +28,8 @@ class UpdateUserRequest extends FormRequest
         return [
             'first_name'   => 'filled',
             'last_name'    => 'filled',
-            'email'        => ['email', Rule::unique('users')->ignore($this->user)],
-            'phone_number' => 'filled|unique:users',
+            'email'        => ['email', $unique = Rule::unique('users')->ignore($this->user)],
+            'phone_number' => ['filled', $unique],
             'password'     => 'confirmed|min:5',
             'address'      => 'string',
             'is_marketing' => 'bool',
