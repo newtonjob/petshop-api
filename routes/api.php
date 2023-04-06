@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewPasswordController;
 use App\Http\Controllers\PasswordResetLinkController;
@@ -38,6 +39,7 @@ Route::prefix('main')->group(function () {
 });
 
 Route::apiResource('categories', CategoryController::class)->only(['index', 'show']);
+Route::apiResource('brands',     BrandController::class)->only(['index', 'show']);
 
 Route::middleware('auth:api')->group(function () {
     Route::middleware('can:admin')->prefix('admin')->name('admin.')->group(function () {
@@ -48,6 +50,7 @@ Route::middleware('auth:api')->group(function () {
 
     Route::apiSingleton('user',      UserProfileController::class)->creatable();
     Route::apiResource('categories', CategoryController::class)->except(['index', 'show']);
+    Route::apiResource('brands',     BrandController::class)->except(['index', 'show']);
 
     Route::get('/user/orders', [UserOrderController::class, 'index'])->name('user.orders.index');
     Route::post('/logout',     [UserAuthController::class, 'destroy'])->name('user.logout');

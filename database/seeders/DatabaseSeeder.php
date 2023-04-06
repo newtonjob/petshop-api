@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Promotion;
@@ -20,6 +21,7 @@ class DatabaseSeeder extends Seeder
         User::factory(100)->create();
         Promotion::factory(4)->create();
         Post::factory(10)->create();
+        Brand::factory(10)->create();
 
         $this->call(CategorySeeder::class);
     }
