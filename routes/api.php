@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Controllers\Api\AdminAuthController;
-use App\Http\Controllers\Api\AdminUserController;
-use App\Http\Controllers\Api\NewPasswordController;
-use App\Http\Controllers\Api\PasswordResetLinkController;
-use App\Http\Controllers\Api\UserAuthController;
-use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\Api\UserProfileController;
+use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\NewPasswordController;
+use App\Http\Controllers\PasswordResetLinkController;
+use App\Http\Controllers\UserAuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserOrderController;
+use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +39,8 @@ Route::middleware('auth:api')->group(function () {
 
     Route::get('/user/orders', [UserOrderController::class, 'index'])->name('user.orders.index');
     Route::post('/logout',     [UserAuthController::class, 'destroy'])->name('user.logout');
+
+    Route::prefix('main')->group(function () {
+
+    });
 });
-
-
