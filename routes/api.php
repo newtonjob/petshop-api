@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AdminAuthController;
 use App\Http\Controllers\Api\AdminUserController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\UserProfileController;
+use App\Http\Controllers\UserOrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,8 @@ Route::middleware('auth:api')->group(function () {
     });
 
     Route::apiSingleton('user', UserProfileController::class)->creatable();
+
+    Route::get('/user/orders', [UserOrderController::class, 'index'])->name('user.orders.index');
 });
 
 
