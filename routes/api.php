@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Api\AdminAuthController;
 use App\Http\Controllers\Api\AdminUserController;
+use App\Http\Controllers\Api\NewPasswordController;
+use App\Http\Controllers\Api\PasswordResetLinkController;
 use App\Http\Controllers\Api\UserAuthController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\UserProfileController;
@@ -22,7 +24,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('/admin/login',  [AdminAuthController::class, 'store'])->name('admin.login');
 Route::post('/admin/create', [AdminUserController::class, 'store'])->name('admin.create');
 
-Route::post('/user/login', [UserAuthController::class, 'store'])->name('user.login');
+Route::post('/user/login',            [UserAuthController::class, 'store'])->name('user.login');
+Route::post('/user/forgot-password',  [PasswordResetLinkController::class, 'store'])->name('password.forgot');
+Route::post('/user/reset-password',   [NewPasswordController::class, 'store'])->name('password.reset');
 
 Route::middleware('auth:api')->group(function () {
     Route::middleware('can:admin')->prefix('admin')->name('admin.')->group(function () {
