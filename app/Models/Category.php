@@ -13,7 +13,7 @@ class Category extends Model
     use HasUuids, HasSlug, SoftDeletes, SortsByRequest;
 
     /**
-     * The attributes that aren't mass assignable.
+     * The attributes that are mass assignable.
      */
-    protected $guarded = [];
+    protected $fillable = ['title'];
 }
