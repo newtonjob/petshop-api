@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\AdminAuthController;
 use App\Http\Controllers\Api\AdminUserController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,15 +18,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/admin/login',  [AdminAuthController::class, 'store'])->name('admin.login');
+Route::post('/admin/create', [AdminUserController::class, 'store'])->name('admin.create');
 
 Route::middleware('auth:api')->group(function () {
     Route::middleware('can:admin')->prefix('admin')->name('admin.')->group(function () {
-        Route::post('/create', [AdminUserController::class, 'store'])->name('create');
-
         Route::apiResource('users', UserController::class)->except(['show', 'store']);
 
         Route::post('/logout', [AdminAuthController::class, 'destroy'])->name('logout');
     });
+
+    Route::apiSingleton('user', UserProfileController::class)->creatable();
 });
 
 
