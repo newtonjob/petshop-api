@@ -57,6 +57,9 @@ class User extends Authenticatable
         return $this->is_admin;
     }
 
+    /**
+     * Scope the query to filter results according to the current request.
+     */
     public function scopeFilter(Builder $builder)
     {
         $builder->when(request('sortBy'), function (Builder $builder, $sortBy) {
