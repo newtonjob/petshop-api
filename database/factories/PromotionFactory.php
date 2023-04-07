@@ -11,11 +11,11 @@ class PromotionFactory extends Factory
         return [
             'title'    => fake()->realText(35),
             'content'  => fake()->realText(),
-            'metadata' => json_encode([
+            'metadata' => [
                 'image'      => fake()->uuid(),
                 'valid_from' => now()->subDay()->toDateString(),
                 'valid_to'   => now()->addDays(3)->toDateString(),
-            ])
+            ]
         ];
     }
 }
