@@ -12,7 +12,7 @@ class ConvertJsonStringsToArray extends TransformsRequest
      */
     protected function transform($key, $value)
     {
-        return str($value)->startsWith('{') && str($value)->isJson()
+        return str($value)->startsWith(['{', '[']) && str($value)->isJson()
             ? Json::decode($value)
             : $value;
     }
