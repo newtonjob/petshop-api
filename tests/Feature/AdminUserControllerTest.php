@@ -12,9 +12,7 @@ class AdminUserControllerTest extends TestCase
 
     public function test_admin_can_created(): void
     {
-        $user = User::factory()->admin()->create();
-
-        $response = $this->actingAs($user)->post(route('admin.create'), [
+        $response = $this->post(route('admin.create'), [
             'first_name'            => fake()->firstName(),
             'last_name'             => fake()->lastName(),
             'email'                 => fake()->unique()->safeEmail(),
