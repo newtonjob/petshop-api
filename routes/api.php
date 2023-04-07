@@ -9,6 +9,7 @@ use App\Http\Controllers\NewPasswordController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderStatusController;
 use App\Http\Controllers\PasswordResetLinkController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\UserController;
@@ -55,6 +56,7 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('brands',          BrandController::class)->except(['index', 'show']);
     Route::apiResource('orders',          OrderController::class);
     Route::apiResource('order-statuses',  OrderStatusController::class);
+    Route::apiResource('payments',        PaymentController::class);
 
     Route::get('/user/orders', [UserOrderController::class, 'index'])->name('user.orders.index');
     Route::post('/logout',     [UserAuthController::class, 'destroy'])->name('user.logout');

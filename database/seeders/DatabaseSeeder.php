@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Brand;
+use App\Models\Payment;
 use App\Models\Post;
 use App\Models\Promotion;
 use App\Models\User;
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
         Promotion::factory(4)->create();
         Post::factory(10)->create();
         Brand::factory(10)->create();
+        Payment::factory(10)->create();
 
         $this->call([
             OrderStatusSeeder::class,
