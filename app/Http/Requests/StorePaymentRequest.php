@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -25,15 +24,5 @@ class StorePaymentRequest extends FormRequest
             'type'    => ['required', Rule::in(['credit_card', 'cash_on_delivery', 'bank_transfer'])],
             'details' => 'required|array'
         ];
-    }
-
-    /**
-     * Prepare the data for validation.
-     */
-    protected function prepareForValidation(): void
-    {
-        if (! is_array($this->details)) {
-            $this->merge(['details' => Json::decode($this->details)]);
-        }
     }
 }
