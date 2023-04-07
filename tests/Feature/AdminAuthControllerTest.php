@@ -41,7 +41,7 @@ class AdminAuthControllerTest extends TestCase
 
         $user->createToken();
 
-        $this->be($user)->post(route('admin.logout'))->assertOk();
+        $this->be($user, 'api')->post(route('admin.logout'))->assertOk();
 
         $this->assertTrue($user->tokens()->doesntExist());
     }
