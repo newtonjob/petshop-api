@@ -3,10 +3,15 @@
 namespace App\Models;
 
 use App\Models\Concerns\HasUuids;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Concerns\SortsByRequest;
 use Illuminate\Database\Eloquent\Model;
 
 class OrderStatus extends Model
 {
-    use HasFactory, HasUuids;
+    use HasUuids, SortsByRequest;
+
+    /**
+     * The attributes that are mass assignable.
+     */
+    protected $fillable = ['title'];
 }

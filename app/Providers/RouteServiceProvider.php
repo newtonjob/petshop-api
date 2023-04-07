@@ -26,6 +26,8 @@ class RouteServiceProvider extends ServiceProvider
     {
         $this->configureRateLimiting();
 
+        Route::resourceParameters(['order-statuses' => 'orderStatus']);
+
         $this->routes(function () {
             Route::middleware('api')
                 ->prefix('api/v1')

@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Brand;
-use App\Models\Category;
 use App\Models\Post;
 use App\Models\Promotion;
 use App\Models\User;
@@ -23,6 +22,9 @@ class DatabaseSeeder extends Seeder
         Post::factory(10)->create();
         Brand::factory(10)->create();
 
-        $this->call(CategorySeeder::class);
+        $this->call([
+            OrderStatusSeeder::class,
+            CategorySeeder::class,
+        ]);
     }
 }
