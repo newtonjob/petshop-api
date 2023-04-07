@@ -15,6 +15,9 @@ When you clone this repo for the first time, you should...
 
 > If you use Laravel Valet, you should be able to access the application immediately after cloning it to your sites directory. E.g. `http://petshop-api.test`
 
-- ## Run the Tests
+## API Documentation
+The API has been documented using [swagger (OpenAPI) here](https://app.swaggerhub.com/apis-docs/JOBNEWTON3/petshop-api/1.0.0).
+
+## Run the Tests
 - To run the tests, simply run the `php artisan test` command.
 - All Good!
