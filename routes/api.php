@@ -10,6 +10,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderStatusController;
 use App\Http\Controllers\PasswordResetLinkController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\UserController;
@@ -42,6 +43,7 @@ Route::prefix('main')->group(function () {
 });
 
 Route::apiResource('categories', CategoryController::class)->only(['index', 'show']);
+Route::apiResource('products',   ProductController::class)->only(['index', 'show']);
 Route::apiResource('brands',     BrandController::class)->only(['index', 'show']);
 
 Route::middleware('auth:api')->group(function () {
@@ -51,12 +53,13 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/logout', [AdminAuthController::class, 'destroy'])->name('logout');
     });
 
-    Route::apiSingleton('user',           UserProfileController::class)->creatable();
     Route::apiResource('categories',      CategoryController::class)->except(['index', 'show']);
+    Route::apiResource('products',        ProductController::class)->except(['index', 'show']);
     Route::apiResource('brands',          BrandController::class)->except(['index', 'show']);
-    Route::apiResource('orders',          OrderController::class);
+    Route::apiSingleton('user',           UserProfileController::class)->creatable();
     Route::apiResource('order-statuses',  OrderStatusController::class);
     Route::apiResource('payments',        PaymentController::class);
+    Route::apiResource('orders',          OrderController::class);
 
     Route::get('/user/orders', [UserOrderController::class, 'index'])->name('user.orders.index');
     Route::post('/logout',     [UserAuthController::class, 'destroy'])->name('user.logout');
