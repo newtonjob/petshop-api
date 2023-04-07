@@ -12,6 +12,13 @@ class Order extends Model
 {
     use HasFactory, HasUuids, SortsByRequest;
 
+    /**
+     * The attributes that should be cast.
+     */
+    protected $casts = [
+        'address' => 'json'
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
