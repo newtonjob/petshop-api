@@ -40,7 +40,7 @@ class StoreProductRequest extends FormRequest
     public function passedValidation(array $keys = null): void
     {
         $this->merge([
-            'category_id' => Category::whereUuid($this->category_uuid)->withTrashed()->value('id')
+            'category_id' => Category::whereUuid($this->category_uuid)->value('id')
         ]);
     }
 
