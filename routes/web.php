@@ -13,3 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', fn () => 'Pet shop API');
